@@ -1,140 +1,102 @@
-/* ===== 全体 ===== */
 body {
-  font-family: "Segoe UI", "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-family: "Segoe UI", "Meiryo", sans-serif;
   margin: 0;
   padding: 32px;
   background: #f4f7fb;
   color: #222;
 }
 
-/* ===== 見出し ===== */
 h1 {
   font-size: 28px;
-  margin-bottom: 24px;
+  margin: 0 0 18px;
   color: #0f3c78;
 }
 
 h2 {
   font-size: 20px;
-  margin-top: 28px;
-  margin-bottom: 12px;
+  margin: 22px 0 10px;
   border-left: 6px solid #2a6fdb;
   padding-left: 10px;
   color: #163a70;
 }
 
 h3 {
-  font-size: 16px;
-  margin-top: 18px;
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   color: #333;
 }
 
-/* ===== カード ===== */
-form, .result-box {
-  background: #ffffff;
-  max-width: 900px;
-  padding: 28px 32px;
+.card {
+  background: #fff;
+  max-width: 980px;
+  padding: 24px 28px;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
 }
 
-/* ===== フォーム ===== */
-label {
-  display: inline-block;
-  margin: 6px 12px 6px 0;
-  cursor: pointer;
-}
-
-input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-right: 6px;
-}
+label { display: inline-block; margin: 6px 12px 6px 0; }
 
 input[type="number"],
 input[type="date"],
 select {
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 6px;
+  padding: 7px 10px;
   border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
-input[type="number"] {
-  width: 80px;
-}
-
-select {
-  min-width: 160px;
-}
-
-/* ===== ボタン ===== */
 button {
-  margin-top: 28px;
-  padding: 12px 26px;
+  margin-top: 16px;
+  padding: 10px 18px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
   color: #fff;
   background: linear-gradient(135deg, #2a6fdb, #1f4fb2);
   border: none;
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(42, 111, 219, 0.35);
+  box-shadow: 0 6px 16px rgba(42,111,219,0.35);
 }
 
-button:hover {
-  opacity: 0.9;
-}
+button:hover { opacity: 0.92; }
 
-/* ===== 結果表示 ===== */
-.result-box {
-  margin-top: 24px;
-}
+a { margin-left: 12px; }
 
-.result-box p {
-  font-size: 18px;
-}
+.big { font-size: 20px; }
 
-.result-box b {
-  font-size: 22px;
-}
-
-/* 強調（差額） */
 .diff {
-  font-size: 26px;
-  font-weight: bold;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 800;
   color: #b00020;
   background: #fdecef;
-  padding: 14px 18px;
+  padding: 10px 14px;
   border-radius: 10px;
-  display: inline-block;
-  margin-top: 10px;
 }
 
-/* ===== テーブル ===== */
+.note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 16px;
+  margin-top: 12px;
   font-size: 14px;
-}
-
-th {
-  background: #eef3fb;
-  color: #163a70;
-  font-weight: bold;
 }
 
 th, td {
   border: 1px solid #cfd8e6;
   padding: 10px;
-  text-align: center;
 }
 
-/* ===== フッター的注意文 ===== */
-.note {
-  margin-top: 18px;
-  font-size: 12px;
-  color: #555;
-  line-height: 1.6;
+th {
+  background: #eef3fb;
+  color: #163a70;
 }
+
+.right { text-align: right; }
+
+.row { margin-top: 14px; }

@@ -9,7 +9,7 @@
 
 <h1>重症喘息 治療費シミュレーション</h1>
 
-<form method="post">
+<form method="post" class="card">
   <h2>所得区分</h2>
   <select name="income">
     <option value="ウ">ウ</option>
@@ -17,7 +17,7 @@
     <option value="非課税">非課税</option>
   </select>
 
-  <h2>既存治療</h2>
+  <h2>既存治療（30日換算）</h2>
 
   <h3>吸入薬</h3>
   {% for d in inhale_main %}
@@ -28,7 +28,7 @@
   {% for d in inhale_var %}
     <label>
       <input type="checkbox" name="{{ d }}"> {{ d }}
-      1回 <input type="number" name="puff_{{ d }}" value="1" min="1"> 吸入
+      1回 <input type="number" name="puff_{{ d }}" value="1" min="1"> 吸入（1日2回）
     </label><br>
   {% endfor %}
 
@@ -50,11 +50,21 @@
     {% endfor %}
   </select>
 
+  <h3>処方パターン</h3>
+  <select name="pattern">
+    <option value="標準開始型">標準開始型</option>
+    <option value="査定配慮型（月初月末開始）">査定配慮型（月初月末開始）</option>
+    <option value="月初2→2週後1→4週後2→翌月以降6本まとめ">月初2→2週後1→4週後2→翌月以降6本まとめ</option>
+    <option value="2→2週後1→翌月以降6本まとめ">2→2週後1→翌月以降6本まとめ</option>
+  </select>
+
   <br><br>
   開始日：<input type="date" name="start" required>
 
   <br><br>
   <button type="submit">計算</button>
+
+  <p class="note">※ 本ツールは患者説明支援の概算です。実際の請求額は運用により変わる可能性があります。</p>
 </form>
 
 </body>

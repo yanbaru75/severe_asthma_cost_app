@@ -9,25 +9,69 @@
 
 <h1>計算結果</h1>
 
-<h2>① 既存治療（月額）</h2>
-<p><b>{{ base.total }} 円</b></p>
+<div class="card">
+  <h2>① 既存治療（月額・30日換算）</h2>
+  <p class="big"><b>{{ base.total }} 円</b></p>
 
-<ul>
-  {% for n, p in base.details %}
-    <li>{{ n }}：{{ p }} 円</li>
-  {% endfor %}
-</ul>
+  <ul>
+    {% for n, p in base.details %}
+      <li>{{ n }}：{{ p }} 円</li>
+    {% endfor %}
+  </ul>
 
-<h2>② 生物学的製剤（{{ bio_drug }}）</h2>
-<p><b>{{ bio[0].pay }} 円 / 月（開始月）</b></p>
+  <h2>② 生物学的製剤（{{ bio_drug }}）</h2>
+  <p>所得区分：<b>{{ income }}</b>　パターン：<b>{{ pattern }}</b></p>
 
-<h2>③ 追加負担額</h2>
-<p style="font-size:20px;color:red">
-  {{ diff }} 円 / 月
-</p>
+  {% if bio|length > 0 %}
+    <p class="big"><b>{{ bio[0].pay }} 円 / 月（開始月の支払い目安）</b></p>
+  {% else %}
+    <p class="big"><b>0 円</b></p>
+  {% endif %}
 
-<button onclick="window.print()">印刷</button>
-<a href="/">戻る</a>
+  <h2>③ 追加負担額（開始月ベース）</h2>
+  <p class="diff">{{ diff }} 円 / 月</p>
+
+  <h2>④ 多数回該当（4回目以降）の支払い</h2>
+  {% if many_first_month %}
+    <p>
+      <b>{{ many_first_month }}</b> から多数回（4回目以降）となり、
+      上限 <b>{{ many_first_cap }}</b> 円が適用されます。
+    </p>
+    <p class="diff">4回目以降の支払い目安： {{ many_first_pay }} 円 / 月</p>
+  {% else %}
+    <p class="note">※ 表示期間内では多数回（4回目以降）に到達しませんでした。</p>
+  {% endif %}
+
+  <h3>月ごとの上限適用（概算）</h3>
+  <table>
+    <tr>
+      <th>月</th>
+      <th>総額（概算）</th>
+      <th>上限</th>
+      <th>支払い</th>
+      <th>4回目以降</th>
+    </tr>
+    {% for r in bio %}
+      <tr>
+        <td>{{ r.month }}</td>
+        <td class="right">{{ r.raw }}</td>
+        <td class="right">{{ r.cap }}</td>
+        <td class="right"><b>{{ r.pay }}</b></td>
+        <td>{{ "はい" if r.many else "—" }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <div class="row">
+    <button onclick="window.print()">印刷</button>
+    <a href="/">戻る</a>
+  </div>
+
+  <p class="note">
+    ※ 本ツールは患者説明支援の概算です。実際の請求は保険・薬局運用・査定等で変わる可能性があります。<br>
+    ※ 多数回の厳密な判定は制度上の条件がありますが、本アプリは「月単位で4回目以降」を説明用に簡易化しています。
+  </p>
+</div>
 
 </body>
 </html>
