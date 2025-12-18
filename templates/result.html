@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>結果</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>計算結果</h1>
+
+<h2>① 既存治療（月額）</h2>
+<p><b>{{ base.total }} 円</b></p>
+
+<ul>
+  {% for n, p in base.details %}
+    <li>{{ n }}：{{ p }} 円</li>
+  {% endfor %}
+</ul>
+
+<h2>② 生物学的製剤（{{ bio_drug }}）</h2>
+<p><b>{{ bio[0].pay }} 円 / 月（開始月）</b></p>
+
+<h2>③ 追加負担額</h2>
+<p style="font-size:20px;color:red">
+  {{ diff }} 円 / 月
+</p>
+
+<button onclick="window.print()">印刷</button>
+<a href="/">戻る</a>
+
+</body>
+</html>
